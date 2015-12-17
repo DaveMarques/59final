@@ -17,10 +17,12 @@ float horizon;
 int points;
 float lobHiX, lobHiY;
 float lobLoX, lobLoY;
+float butX = 150;
+float butY = 40;
 
 
 void setup() {
-  size(500, 500);
+  size(1000, 800);
   rectMode(CORNERS);
   reset();
 }
@@ -67,6 +69,22 @@ void scene() {
 //containing all display methods
 void display() {
   stroke(1);
+  
+  //button
+  fill(255,0,0);
+  ellipse(butX,butY,30,30);
+  
+  //Highest XY
+  text("X",10,20);
+  text("Y",10,30);
+  
+  text("highest",20,10);
+  text(lobHiX,20,20);
+  text(lobHiY,20,30);
+  
+  text("lowest",100,10);
+  text(lobLoX,100,20);
+  text(lobLoY,100,30);
 
   //triangles on right side
   float tri = 0;
@@ -131,16 +149,6 @@ void lobLo() {
 void lobReport(){
   lobLo();
   lobHi();
-  text("X",10,20);
-  text("Y",10,30);
-  
-  text("highest",20,10);
-  text(lobHiX,20,20);
-  text(lobHiY,20,30);
-  
-  text("lowest",100,10);
-  text(lobLoX,100,20);
-  text(lobLoY,100,30);
   
 }
 
@@ -367,7 +375,8 @@ class Boat {
  */
 
 
-
+//mouse press function
 void mousePressed() {
-  reset();
+  if(dist(mouseX,mouseY,butX,butY) < 30)lobReport();
+  //reset();
 }
